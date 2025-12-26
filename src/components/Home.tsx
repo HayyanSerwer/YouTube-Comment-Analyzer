@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Search from './Search.tsx';
+import Comment from './Comment.tsx'
 
 function Home() {
   const [count, setCount] = useState(0);
@@ -56,7 +57,7 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 -mt-50">
+    <div className="flex flex-col items-center justify-start min-h-screen px-4 pt-20">
       <h1 className="text-white text-4xl mb-8 text-center">Enter YouTube Link</h1>
       <div className="flex flex-row w-full max-w-xl">
         <Search onURLChange={handleURLChange} />
@@ -68,12 +69,12 @@ function Home() {
           {loading ? "Loading..." : "AI Analyzer"}
         </button>
       </div>
-      <div className="mt-8 w-full max-w-xl">
+      <div className="mt-8 w-full max-w-xl ">
         {comments.length > 0 ? (
-          <ul className="text-white">
+          <ul className="text-white bg-gray-800 rounded-lg p-4 max-h-96 overflow-y-auto">
             {comments.map((comment, index) => (
-              <li key={index} className="mb-4">{comment}</li>
-            ))}
+              <Comment key={index} text={comment} number={index}/>
+            ))} 
           </ul>
         ) : (
           <p className="text-white">No comments fetched yet.</p>
