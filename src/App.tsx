@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import About from './components/About'
 import Analyzer from './components/Analyzer'
+import Saves from './components/Saves'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/AI Analyzer" element={<Analyzer comments={comments} URL={URL} />} />
+          <Route path="/Saves" element={<Saves comments={comments} URL={URL} />} />
 
       </Routes>
     </div>
