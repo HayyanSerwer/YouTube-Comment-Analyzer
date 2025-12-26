@@ -1,20 +1,22 @@
-import { useState } from 'react';
 import Search from './Search.tsx';
-import Comment from './Comment.tsx'
+import Comment from './Comment.tsx';
 
-function Home() {
-  const [count, setCount] = useState(0);
-  const [URL, setURL] = useState("");
-  const [comments, setComments] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
+interface HomeProps {
+  URL: string;
+  setURL: (url: string) => void;
+  comments: string[];
+  setComments: (comments: string[]) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+}
 
+function Home({ URL, setURL, comments, setComments, loading, setLoading }: HomeProps) {
   const handleURLChange = (url: string) => {
     setURL(url);
     console.log("URL from Search component:", url);
   };
 
   const extractVideoID = (url: string) => {
-    
     const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
     return match ? match[1] : '';
   };
