@@ -30,6 +30,7 @@ newvenv/
 env/
 venv/
 
+backend/newvenv
 
 __pycache__/
 *.pyc
