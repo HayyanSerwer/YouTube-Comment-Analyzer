@@ -2,7 +2,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from youtube_client import get_youtube_client
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
 
+nltk.download('vader_lexicon')
 app = FastAPI()
 
 app.add_middleware(
@@ -65,3 +68,25 @@ async def get_comments(request: CommentRequest):
     except Exception as e:
         print(f"Error: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error fetching comments: {str(e)}")
+
+
+sia = SentimentIntensityAnalyzer()
+
+class AnalyzeRequest(BaseModel):
+    comments: list[str]
+
+@app.post("/analyze_comments/")
+async def analyze_comments(request: AnalyzeRequest):
+    results = []
+
+    for comment in request.comments:
+        scores = sia.polarity_scores(comment)
+        results.append({
+            "comment": comment,
+            "compound": scores["compound"],
+            "positive": scores["pos"],
+            "neutral": scores["neu"],
+            "negative": scores["neg"]
+        })
+
+    return {"analysis": results}
