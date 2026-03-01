@@ -7,7 +7,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Comments' },
     { name: 'AI Analyzer' },
-    { name: 'Saves' },
+    { name: 'Semantic Search' },
     { name: 'About' }
   ];
 

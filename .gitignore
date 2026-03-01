@@ -29,6 +29,7 @@ newvenv/
 
 env/
 venv/
+myvenv/
 
 backend/newvenv
 

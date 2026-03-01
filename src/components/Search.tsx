@@ -13,7 +13,8 @@ export default function Search({ onURLChange }: SearchProps) {
   };
 
   return (
-    <input
+    <>
+      <input
       type="text"
       value={inputValue} 
       onChange={handleInputChange} 
@@ -34,5 +35,7 @@ export default function Search({ onURLChange }: SearchProps) {
         transition
       "
     />
+    </>
+
   );
 }
