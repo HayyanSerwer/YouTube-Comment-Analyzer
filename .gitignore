@@ -30,8 +30,11 @@ newvenv/
 env/
 venv/
 myvenv/
-
+backend/__pycache__/
+nltk_data/
 backend/newvenv
+backend/myvenv/
+
 
 __pycache__/
 *.pyc
